@@ -51,8 +51,11 @@ private:
     bool operator<(const CheckDesc& rhs) const
     {
       std::map<string,string> oopts, rhsoopts;
-      for(const auto& m : opts)
+
+      for(const auto& m : opts) {
+        oopts[m.second]=oopts[m.first]; // api misuse bug
         oopts[m.first]=m.second;
+      }
       for(const auto& m : rhs.opts)
         rhsoopts[m.first]=m.second;
 
